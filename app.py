@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html',
+    return render_template('templates/index.html',
                            book_name = list(popular_df['Book-Title'].values),
                            author=list(popular_df['Book-Author'].values),
                            image=list(popular_df['Image-URL-M'].values),
@@ -21,11 +21,11 @@ def index():
                            rating=list(popular_df['avg_rating'].values)
                            )
 
-@app.route('/recommend')
+@app.route('templates/recommend.html')
 def recommend_ui():
     return render_template('recommend.html')
 
-@app.route('/recommend_books',methods=['post'])
+@app.route('templates/recommend.html',methods=['post'])
 def recommend():
     user_input = request.form.get('user_input')
     index = np.where(pt.index == user_input)[0][0]
